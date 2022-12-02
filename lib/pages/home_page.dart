@@ -29,15 +29,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Movie List'),
         centerTitle: true,
-        leading: (page > 1)
-            ? Padding(
+        leading: (page > 1) ? Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                   onPressed: () {
                     setState(() {
                       page--;
-                      Provider.of<MovieProvider>(context, listen: false)
-                          .getData(page: page);
+                      Provider.of<MovieProvider>(context, listen: false).getData(page: page);
                     });
                   },
                   icon: const Icon(Icons.arrow_back),
@@ -74,8 +72,7 @@ class _HomePageState extends State<HomePage> {
             ? ListView.builder(
                 itemCount: provider.movieResponse!.data!.movies!.length,
                 itemBuilder: (context, index) {
-                  final movie =
-                      provider.movieResponse!.data!.movies![index];
+                  final movie = provider.movieResponse!.data!.movies![index];
                   final genresList = movie.genres;
                   final torrentMapList = movie.torrents;
                   return Padding(
@@ -117,24 +114,12 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     Text(movie.year!.toString()),
                                     Wrap(
-                                      children: genresList!
-                                          .map((e) => Text(
-                                                '$e  ',
-                                                style: const TextStyle(
-                                                  color: Colors.blue,
-                                                ),
-                                              ))
+                                      children: genresList!.map((e) => Text('$e  ', style: const TextStyle(color: Colors.blue,),))
                                           .toList(),
                                     ),
                                     Row(
                                       children: [
-                                        const Text(
-                                          'Available in: ',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                        //const Text('Available in: ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,)),
                                         Row(
                                           children: torrentMapList!.map((e) {
                                             return Text(
@@ -164,13 +149,9 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                              movie.rating.toString()),
+                                          child: Text(movie.rating.toString()),
                                         ),
-                                        const Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
+                                        const Icon(Icons.star, color: Colors.amber,),
                                       ],
                                     )
                                   ],
